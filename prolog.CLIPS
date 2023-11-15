@@ -1,0 +1,172 @@
+(defrule Menu
+ (not (has-fur ?))
+=> (printout t crlf crlf
+"Does the animal has fur? " crlf crlf 
+" Enter your choise here (yes|no): " )
+(assert (has-fur (read))))
+:; Rule Domestic pet
+:;-----------R0---------------------
+(defrule Domestic_pet 
+(has-fur yes)
+?retractCh1 <- (has-fur yes)
+(not (domestic-pet ?))
+ =>  (retract ?retractCh1)
+(printout t crlf crlf crlf"Is the animal a domestic pet? (yes|no)"crlf crlf 
+" Your answer: " )
+ (assert (domestic-pet (read))))
+:;-------------R1--------------------
+(defrule Domestic_pet1
+ (domestic-pet yes)
+ ?retractChy <- (domestic-pet yes)
+ (not (small-and-indoors ?))
+ =>
+ (retract ?retractChy)
+ (printout t crlf crlf crlf"Is it small and often kept indoors?(yes|no)"crlf
+" Your answer: " )
+ (assert (small-and-indoors (read))))
+:;--------------R2--------------------  
+(defrule Domestic_pet2
+ (small-and-indoors yes)
+ ?retractChy <- (small-and-indoors yes)
+ =>
+ (retract ?retractChy)
+ (printout t crlf crlf crlf "It could be a cat."
+crlf "-------------------------------------------------" crlf ))
+:;--------------R3-------------------
+(defrule Domestic_pet3 
+(small-and-indoors no)
+ ?retractChn <- (small-and-indoors no)
+ =>
+ (retract ?retractChn)
+ (printout t crlf crlf crlf "It could be a larger domestic animal, like dog." crlf"-------------------------------------------------" crlf ))
+ (assert (ifYesNochoise2 (read))))
+:;--------------R4-------------------
+(defrule Domestic_pet4
+ (domestic-pet no)
+ ?retractChy <- (domestic-pet no)
+ (not (large-and-wild ?))
+ =>
+ (retract ?retractChy)
+ (printout t crlf crlf crlf"Is the animal large and wild? (yes|no)"crlf
+" Your answer: " )
+ (assert (large-and-wild (read))))
+:;----------------R5-------------------
+(defrule Domestic_pet5
+(large-and-wild yes)
+?retractChy <- (large-and-wild yes)
+=>
+(retract ?retractChy)
+ (printout t crlf crlf crlf "It could be a bear or a lion." 
+crlf "-------------------------------------------------" crlf )) 
+:;---------------R6--------------------
+(defrule Domestic_pet6
+(large-and-wild no)
+?retractChn <- (large-and-wild no)
+=>
+(retract ?retractChn)
+ (printout t crlf crlf crlf "It could be like a wildcat, like a cheetah."
+crlf "-------------------------------------------------" crlf )) 
+:;---------------R7--------------------
+(defrule Scale_pet 
+(has-fur no)
+?retractCh1 <- (has-fur no)
+(not (scale_pet ?))
+ =>  (retract ?retractCh1)
+(printout t crlf crlf crlf"Does the animal have scales? (yes|no)"crlf crlf 
+" Your answer: " )
+ (assert (scale_pet (read))))
+:;---------------R8--------------------
+(defrule Scale_pet1 
+(scale_pet yes)
+?retractCh1 <- (scale_pet yes)
+(not (clood-blood ?))
+ =>  (retract ?retractCh1)
+(printout t crlf crlf crlf"Is the animal a cold-blooded reptile? (yes|no)"crlf crlf 
+" Your answer: " )
+ (assert (clood-blood (read))))
+:;---------------R9--------------------
+(defrule Scale_pet2 
+(clood-blood yes)
+ ?retractChy <- (clood-blood yes)
+ =>
+ (retract ?retractChy)
+ (printout t crlf crlf crlf "It could be a snake or a lizard." crlf
+ "-------------------------------------------------" crlf ))
+:;---------------R10--------------------
+(defrule Scale_pet3
+(clood-blood no)
+?retractCh1 <- (clood-blood no)
+(not (slim-or-moist ?))
+ =>  (retract ?retractCh1)
+(printout t crlf crlf crlf"Does the animal have a slimy or moist skin? (yes|no)"crlf
+" Your answer: " )
+ (assert (slim-or-moist (read))))
+:;---------------R11--------------------
+(defrule Scale_pet2 
+(slim-or-moist yes)
+?retractCh1 <- (slim-or-moist yes)
+ =>  (retract ?retractCh1)
+(printout t crlf crlf crlf"It could be an amphibian, like a frog."crlf crlf
+"------------------------------------------------------"crlf ))
+:;---------------R12--------------------
+(defrule Scale_pet5
+(slim-or-moist no)
+?retractCh1 <- (slim-or-moist no)
+(not (animal-fly ?))
+ =>  (retract ?retractCh1)
+(printout t crlf crlf crlf"Does the animal fly? (yes|no)"crlf crlf 
+" Your answer: " )
+ (assert (animal-fly (read))))
+:;---------------R13--------------------
+(defrule Scale_pet6
+(animal-fly yes)
+?retractCh1 <- (animal-fly yes)
+ =>  (retract ?retractCh1)
+(printout t crlf crlf crlf"It could be a bird."crlf crlf
+"------------------------------------------------------"crlf ))
+:;---------------R14--------------------
+(defrule Scale_pet7
+(animal-fly no)
+?retractCh1 <- (animal-fly no)
+ =>  (retract ?retractCh1)
+(printout t crlf crlf crlf"It could be a warm-blooded reptile, like a crocodile."crlf crlf
+"------------------------------------------------------"crlf ))
+:;---------------R15--------------------
+(defrule Scale_pet8
+(scale_pet no)
+?retractCh1 <- (scale_pet no)
+(not (primarily-aqatic ?))
+ =>  (retract ?retractCh1)
+(printout t crlf crlf crlf"Is the animal primarily aquatic? (yes|no)"crlf crlf 
+" Your answer: " )
+ (assert (primarily-aqatic (read))))
+:;---------------R16--------------------
+(defrule Scale_pet9
+(primarily-aqatic yes)
+?retractCh1 <- (primarily-aqatic yes)
+ =>  (retract ?retractCh1)
+(printout t crlf crlf crlf"It could be a fish."crlf crlf
+"------------------------------------------------------"crlf ))
+:;---------------R17--------------------
+(defrule Scale_pet20 
+(primarily-aqatic no)
+?retractCh1 <- (primarily-aqatic no)
+(not (land-dwelling ?))
+ =>  (retract ?retractCh1)
+(printout t crlf crlf crlf"Is the animal a land-dwelling mammal? (yes|no)"crlf crlf 
+" Your answer: " )
+ (assert (land-dwelling (read))))
+:;---------------R18--------------------
+(defrule Scale_pet11
+(land-dwelling yes)
+?retractCh1 <- (land-dwelling yes)
+ =>  (retract ?retractCh1)
+(printout t crlf crlf crlf"It could be a kangaroo."crlf crlf
+"------------------------------------------------------"crlf ))
+:;---------------R19--------------------
+(defrule Scale_pet12
+(land-dwelling no)
+?retractCh1 <- (land-dwelling no)
+ =>  (retract ?retractCh1)
+(printout t crlf crlf crlf"It could be another type of mammal."crlf crlf
+"------------------------------------------------------"crlf ))
