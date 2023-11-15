@@ -1,4 +1,4 @@
-(defrule Menu
+(defrule Start
  (not (has-fur ?))
 => (printout t crlf crlf
 "Does the animal has fur? " crlf crlf 
